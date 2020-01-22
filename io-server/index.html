@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #color-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+        width: 100vw;
+        height: 100vh;
+      }
+
+      div {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="color-grid">
+      <div id="color-1" onclick="changeColor"></div>
+      <div id="color-2" onclick="changeColor"></div>
+      <div id="color-3" onclick="changeColor"></div>
+      <div id="color-4" onclick="changeColor"></div>
+      <div id="color-5" onclick="changeColor"></div>
+      <div id="color-6" onclick="changeColor"></div>
+      <div id="color-7" onclick="changeColor"></div>
+      <div id="color-8" onclick="changeColor"></div>
+      <div id="color-9" onclick="changeColor"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io()
+      const colorDivs = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(num =>
+        document.getElementById(`color-${num}`)
+      )
+
+      randomize()
+      colorDivs.forEach(el => {
+        el.addEventListener('click', changeColor)
+      })
+
+      function changeColor(e) {
+        const bg = e.target.style.background
+        const colorArr = bg.match(/\d+/g)
+        const [red, green, blue] = colorArr
+
+        console.log('change to:', { red, green, blue })
+        socket.emit('changeColor', {
+          red: Number(red),
+          green: Number(green),
+          blue: Number(blue)
+        })
+
+        randomize()
+
+        return false
+      }
+
+      function randomize() {
+        colorDivs.forEach(div => {
+          const red = Math.random() * 255
+          const green = Math.random() * 255
+          const blue = Math.random() * 255
+
+          div.style.background = `rgb(${red}, ${green}, ${blue})`
+        })
+      }
+    </script>
+  </body>
+</html>
