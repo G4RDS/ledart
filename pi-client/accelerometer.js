@@ -17,21 +17,25 @@ class Accelerometer {
 
   // 初期化処理
   async init() {
-    // I2C Bus を開く
-    this.bus = await i2c.openPromisified(1);
+    try {
+      // I2C Bus を開く
+      this.bus = await i2c.openPromisified(1);
 
-    // セットアップ
-    await this.bus.writeByte(MPU6050_ADDR, 0x6b, 0x80); // reset
-    await sleep(250);
-    await this.bus.writeByte(MPU6050_ADDR, 0x6b, 0x00); // reset
-    await sleep(250);
-    await this.bus.writeByte(MPU6050_ADDR, 0x6a, 0x07); // reset
-    await sleep(250);
-    await this.bus.writeByte(MPU6050_ADDR, 0x6a, 0x00); // reset
-    await sleep(250);
-    await this.bus.writeByte(MPU6050_ADDR, 0x1a, 0x00); // config
-    await this.bus.writeByte(MPU6050_ADDR, 0x1b, 0x18); // +-2000/s
-    await this.bus.writeByte(MPU6050_ADDR, 0x1c, 0x10); // +-8g
+      // セットアップ
+      await this.bus.writeByte(MPU6050_ADDR, 0x6b, 0x80); // reset
+      await sleep(250);
+      await this.bus.writeByte(MPU6050_ADDR, 0x6b, 0x00); // reset
+      await sleep(250);
+      await this.bus.writeByte(MPU6050_ADDR, 0x6a, 0x07); // reset
+      await sleep(250);
+      await this.bus.writeByte(MPU6050_ADDR, 0x6a, 0x00); // reset
+      await sleep(250);
+      await this.bus.writeByte(MPU6050_ADDR, 0x1a, 0x00); // config
+      await this.bus.writeByte(MPU6050_ADDR, 0x1b, 0x18); // +-2000/s
+      await this.bus.writeByte(MPU6050_ADDR, 0x1c, 0x10); // +-8g
+    } catch (err) {
+      throw new Error("Device was not detected");
+    }
   }
 
   async getGX() {
@@ -89,7 +93,7 @@ class Accelerometer {
     const az = acc.getAZ();
     const t = acc.getTemp();
 
-    await Promise.all(gx, gy, gz, ax, ay, az, t);
+    await Promise.all([gx, gy, gz, ax, ay, az, t]);
 
     console.log("Gyro X", gx);
     console.log("Gyro Y", gy);
