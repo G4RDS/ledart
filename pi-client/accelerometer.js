@@ -103,6 +103,6 @@ class Accelerometer {
     console.log("Acc. Z", az);
     console.log("Temp. ", t);
 
-    sleep(500);
+    await sleep(500);
   }
 })();
