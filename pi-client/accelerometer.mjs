@@ -1,5 +1,5 @@
 import i2c from 'i2c-bus'
-import { sleep } from './util.js'
+import { sleep } from './util.mjs'
 
 const MPU6050_ADDR = 0x68
 
