@@ -3,6 +3,14 @@ import { sleep } from './util.mjs'
 
 const MPU6050_ADDR = 0x68
 
+// 補正のための基準値
+const GX_STD = -55
+const GY_STD = 5
+const GZ_STD = -30
+const AX_STD = 0
+const AY_STD = 160
+const AZ_STD = 4490
+
 // 加速度計にアクセスするクラス
 export default class Accelerometer {
   constructor() {
@@ -33,22 +41,28 @@ export default class Accelerometer {
   }
 
   async getGX() {
-    return this.getValue(0x43)
+    const val = await this.getValue(0x43)
+    return val - GX_STD
   }
   async getGY() {
-    return this.getValue(0x45)
+    const val = await this.getValue(0x45)
+    return val - GY_STD
   }
   async getGZ() {
-    return this.getValue(0x47)
+    const val = await this.getValue(0x47)
+    return val - GZ_STD
   }
   async getAX() {
-    return this.getValue(0x38)
+    const val = await this.getValue(0x38)
+    return val - AX_STD
   }
   async getAY() {
-    return this.getValue(0x3d)
+    const val = await this.getValue(0x3d)
+    return val - AY_STD
   }
   async getAZ() {
-    return this.getValue(0x3f)
+    const val = await this.getValue(0x3f)
+    return val - AZ_STD
   }
   async getTemp() {
     const val = await this.getValue(0x41)
