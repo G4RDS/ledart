@@ -4,7 +4,7 @@ import { sleep } from './util.mjs'
 const MPU6050_ADDR = 0x68
 
 // 加速度計にアクセスするクラス
-class Accelerometer {
+export default class Accelerometer {
   constructor() {
     this.bus = null
   }
@@ -72,39 +72,39 @@ class Accelerometer {
 }
 
 // テスト用 main
-;(async function() {
-  // 加速度計
-  const acc = new Accelerometer()
-  await acc.init()
+// ;(async function() {
+//   // 加速度計
+//   const acc = new Accelerometer()
+//   await acc.init()
 
-  // 値をひたすらとる
-  while (true) {
-    let gx = acc.getGX()
-    let gy = acc.getGY()
-    let gz = acc.getGZ()
-    let ax = acc.getAX()
-    let ay = acc.getAY()
-    let az = acc.getAZ()
-    let t = acc.getTemp()
+//   // 値をひたすらとる
+//   while (true) {
+//     let gx = acc.getGX()
+//     let gy = acc.getGY()
+//     let gz = acc.getGZ()
+//     let ax = acc.getAX()
+//     let ay = acc.getAY()
+//     let az = acc.getAZ()
+//     let t = acc.getTemp()
 
-    ;[gx, gy, gz, ax, ay, az, t] = await Promise.all([
-      gx,
-      gy,
-      gz,
-      ax,
-      ay,
-      az,
-      t,
-    ])
+//     ;[gx, gy, gz, ax, ay, az, t] = await Promise.all([
+//       gx,
+//       gy,
+//       gz,
+//       ax,
+//       ay,
+//       az,
+//       t,
+//     ])
 
-    console.log('Gyro X', gx)
-    console.log('Gyro Y', gy)
-    console.log('Gyro Z', gz)
-    console.log('Acc. X', ax)
-    console.log('Acc. Y', ay)
-    console.log('Acc. Z', az)
-    console.log('Temp. ', t)
+//     console.log('Gyro X', gx)
+//     console.log('Gyro Y', gy)
+//     console.log('Gyro Z', gz)
+//     console.log('Acc. X', ax)
+//     console.log('Acc. Y', ay)
+//     console.log('Acc. Z', az)
+//     console.log('Temp. ', t)
 
-    await sleep(500)
-  }
-})()
+//     await sleep(500)
+//   }
+// })()
