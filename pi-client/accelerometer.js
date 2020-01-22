@@ -1,4 +1,4 @@
-import I2C from "i2c-bus";
+import i2c from "i2c-bus";
 
 const MPU6050_ADDR = 0x68;
 
