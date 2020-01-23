@@ -5,7 +5,7 @@ const MPU6050_ADDR = 0x68
 
 // 補正のための基準値
 const GX_STD = -55
-const GY_STD = 5
+const GY_STD = 10
 const GZ_STD = -30
 const AX_STD = 0
 const AY_STD = 130
@@ -53,7 +53,7 @@ export default class Accelerometer {
     return val - GZ_STD
   }
   async getAX() {
-    const val = await this.getValue(0x38)
+    const val = await this.getValue(0x3b)
     return val - AX_STD
   }
   async getAY() {
