@@ -8,7 +8,7 @@ const GX_STD = -55
 const GY_STD = 5
 const GZ_STD = -30
 const AX_STD = 0
-const AY_STD = 160
+const AY_STD = 30
 const AZ_STD = 4490
 
 // 加速度計にアクセスするクラス
