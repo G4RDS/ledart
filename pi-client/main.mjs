@@ -1,4 +1,5 @@
 import Accelerometer from './accelerometer.mjs'
+import { sleep } from './util.mjs'
 
 const ACC_THRESHOLD = 50
 
