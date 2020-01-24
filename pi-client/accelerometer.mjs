@@ -42,27 +42,27 @@ export default class Accelerometer {
 
   async getGX() {
     const val = await this.getValue(0x43)
-    return val - GX_STD / 131
+    return (val - GX_STD) / 131
   }
   async getGY() {
     const val = await this.getValue(0x45)
-    return val - GY_STD / 131
+    return (val - GY_STD) / 131
   }
   async getGZ() {
     const val = await this.getValue(0x47)
-    return val - GZ_STD / 131
+    return (val - GZ_STD) / 131
   }
   async getAX() {
     const val = await this.getValue(0x3b)
-    return val - AX_STD / 16384
+    return (val - AX_STD) / 16384
   }
   async getAY() {
     const val = await this.getValue(0x3d)
-    return val - AY_STD / 16384
+    return (val - AY_STD) / 16384
   }
   async getAZ() {
     const val = await this.getValue(0x3f)
-    return val - AZ_STD / 16384
+    return (val - AZ_STD) / 16384
   }
   async getTemp() {
     const val = await this.getValue(0x41)
