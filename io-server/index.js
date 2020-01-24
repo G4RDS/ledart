@@ -4,8 +4,6 @@ const io = require('socket.io')(http)
 
 const PORT = 8080
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
-
 io.on('connection', socket => {
   console.log('A client has been connected.')
 
