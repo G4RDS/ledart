@@ -46,10 +46,10 @@ io.on('connection', socket => {
     io.emit('changeColor', getNextColor())
   })
 
-  socket.on('changeColor', color => {
-    console.log(`Change color request has been received.`)
-    socket.broadcast.emit('changeColor', color)
-  })
+  // socket.on('changeColor', color => {
+  //   console.log(`Change color request has been received.`)
+  //   socket.broadcast.emit('changeColor', color)
+  // })
 })
 
 http.listen(PORT, () => console.log(`listening on *:${PORT}`))

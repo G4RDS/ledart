@@ -6,11 +6,14 @@ import { sleep } from './util.mjs'
 
 // 定数
 const piId = 1
-const THRESHOLD = 2
+const THRESHOLD = 1.5
+const TIMEOUT_DURATION = 1000
 
 const socket = io('http://10.7.31.37:8080')
 const led = new Led()
 const acc = new Accelerometer()
+
+const lastPushed = 0
 
 socket.on('connect', async () => {
   console.log('Connected to the server.')
@@ -32,8 +35,12 @@ socket.on('connect', async () => {
       acc.getGZ(),
     ])
 
-    // ジャイロの三軸のうち一つでも閾値を超えたなら、バルーンが押されたと判定してサーバーに通知
-    if (gx >= THRESHOLD || gy >= THRESHOLD || gz >= THRESHOLD) {
+    // ジャイロの三軸のうち一つでも閾値を超え、最後に押されてから一定時間が経過しているなら、
+    // バルーンが押されたと判定してサーバーに通知
+    if (
+      (gx >= THRESHOLD || gy >= THRESHOLD || gz >= THRESHOLD) &&
+      Date.now() - lastPushed >= TIMEOUT_DURATION
+    ) {
       socket.emit('balloonPushed')
     }
 
