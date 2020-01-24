@@ -1,7 +1,7 @@
 const io = require('socket.io-client')
 const Gpio = require('pigpio').Gpio
 
-const socket = io('http://10.7.31.37:8080')
+const socket = io('http://192.168.0.6:8080')
 
 const piId = 'pi5'
 // gpio

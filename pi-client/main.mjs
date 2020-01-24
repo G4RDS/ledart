@@ -6,7 +6,7 @@ import { sleep } from './util.mjs'
 // 定数
 const THRESHOLD = 3
 
-const socket = io('http://10.7.31.36:8080')
+const socket = io('http://10.7.31.37:8080')
 const led = new Led()
 const acc = new Accelerometer()
 
