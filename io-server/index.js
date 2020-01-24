@@ -43,7 +43,7 @@ io.on('connection', socket => {
   socket.on('balloonPushed', () => {
     console.log(`A balloon was pressed.`)
 
-    socket.broadcast.emit('changeColor', getNextColor())
+    io.emit('changeColor', getNextColor())
   })
 
   socket.on('changeColor', color => {
