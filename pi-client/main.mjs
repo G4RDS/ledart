@@ -29,11 +29,21 @@ socket.on('connect', async () => {
 
   // 値をひたすらとる
   while (true) {
-    const [gx, gy, gz] = await Promise.all([
+    const [gx, gy, gz, ax, ay, az] = await Promise.all([
       acc.getGX(),
       acc.getGY(),
       acc.getGZ(),
+      acc.getAX(),
+      acc.getAY(),
+      acc.getAZ(),
     ])
+
+    console.log('\nGX:', gx)
+    console.log('GY:', gx)
+    console.log('GZ:', gx)
+    console.log('AX:', gx)
+    console.log('AY:', gx)
+    console.log('AZ:', gx)
 
     // ジャイロの三軸のうち一つでも閾値を超え、最後に押されてから一定時間が経過しているなら、
     // バルーンが押されたと判定してサーバーに通知
