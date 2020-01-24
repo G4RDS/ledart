@@ -5,8 +5,8 @@ import Accelerometer from './accelerometer.mjs'
 import { sleep } from './util.mjs'
 
 // 定数
-const THRESHOLD = 3
 const piId = 1
+const THRESHOLD = 2
 
 const socket = io('http://10.7.31.37:8080')
 const led = new Led()
@@ -26,21 +26,16 @@ socket.on('connect', async () => {
 
   // 値をひたすらとる
   while (true) {
-    const [gx, gy, gz, ax, ay, az] = await Promise.all([
+    const [gx, gy, gz] = await Promise.all([
       acc.getGX(),
       acc.getGY(),
       acc.getGZ(),
-      acc.getAX(),
-      acc.getAY(),
-      acc.getAZ(),
     ])
 
-    console.log('\nGyro X', gx)
-    console.log('Gyro Y', gy)
-    console.log('Gyro Z', gz)
-    console.log('Acc. X', ax)
-    console.log('Acc. Y', ay)
-    console.log('Acc. Z', az)
+    // ジャイロの三軸のうち一つでも閾値を超えたなら、バルーンが押されたと判定してサーバーに通知
+    if (gx >= THRESHOLD || gy >= THRESHOLD || gz >= THRESHOLD) {
+      socket.emit('balloonPushed')
+    }
 
     await sleep(500)
   }
