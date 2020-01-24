@@ -25,7 +25,7 @@ socket.on('connect', async () => {
 
   // 値をひたすらとる
   while (true) {
-    ;[gx, gy, gz, ax, ay, az] = await Promise.all([
+    const [gx, gy, gz, ax, ay, az] = await Promise.all([
       acc.getGX(),
       acc.getGY(),
       acc.getGZ(),
