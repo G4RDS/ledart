@@ -7,9 +7,9 @@ const MPU6050_ADDR = 0x68
 const GX_STD = -55
 const GY_STD = 10
 const GZ_STD = -30
-const AX_STD = 0
-const AY_STD = 130
-const AZ_STD = 4460
+const AX_STD = -50
+const AY_STD = -30
+const AZ_STD = 4490
 
 // 加速度計にアクセスするクラス
 export default class Accelerometer {
