@@ -39,11 +39,11 @@ socket.on('connect', async () => {
     ])
 
     console.log('\nGX:', gx)
-    console.log('GY:', gx)
-    console.log('GZ:', gx)
-    console.log('AX:', gx)
-    console.log('AY:', gx)
-    console.log('AZ:', gx)
+    console.log('GY:', gy)
+    console.log('GZ:', gz)
+    console.log('AX:', ax)
+    console.log('AY:', ay)
+    console.log('AZ:', az)
 
     // ジャイロの三軸のうち一つでも閾値を超え、最後に押されてから一定時間が経過しているなら、
     // バルーンが押されたと判定してサーバーに通知
