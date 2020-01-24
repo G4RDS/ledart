@@ -10,8 +10,7 @@ const socket = io('http://10.7.31.36:8080')
 const led = new Led()
 const acc = new Accelerometer()
 
-
-socket.on('connect', () => {
+socket.on('connect', async () => {
   console.log('Connected to the server.')
   socket.emit('clientHello', piId)
 
@@ -25,7 +24,7 @@ socket.on('connect', () => {
 
   // 値をひたすらとる
   while (true) {
-    [gx, gy, gz, ax, ay, az] = await Promise.all([
+    ;[gx, gy, gz, ax, ay, az] = await Promise.all([
       acc.getGX(),
       acc.getGY(),
       acc.getGZ(),
