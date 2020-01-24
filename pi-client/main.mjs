@@ -41,6 +41,7 @@ socket.on('connect', async () => {
       (gx >= THRESHOLD || gy >= THRESHOLD || gz >= THRESHOLD) &&
       Date.now() - lastPushed >= TIMEOUT_DURATION
     ) {
+      lastPushed = Date.now()
       socket.emit('balloonPushed')
     }
 
