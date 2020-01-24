@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
 import Led from './led.mjs'
+import Color from './color.mjs'
 import Accelerometer from './accelerometer.mjs'
 import { sleep } from './util.mjs'
 
