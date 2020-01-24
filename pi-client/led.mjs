@@ -1,6 +1,7 @@
+import PiGpio from 'pigpio'
 import Color from './color.mjs'
 
-const Gpio = require('pigpio').Gpio
+const Gpio = PiGpio.Gpio
 
 export default class Led {
   constructor() {
