@@ -5,6 +5,7 @@ import { sleep } from './util.mjs'
 
 // 定数
 const THRESHOLD = 3
+const piId = 1
 
 const socket = io('http://10.7.31.37:8080')
 const led = new Led()
