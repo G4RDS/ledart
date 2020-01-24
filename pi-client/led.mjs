@@ -30,8 +30,8 @@ export default class Led {
     this.color = color
 
     // update pwm value
-    gpioRed.pwmWrite(this.color.red)
-    gpioGreen.pwmWrite(this.color.green)
-    gpioBlue.pwmWrite(this.color.blue)
+    this.gpioRed.pwmWrite(this.color.red)
+    this.gpioGreen.pwmWrite(this.color.green)
+    this.gpioBlue.pwmWrite(this.color.blue)
   }
 }
