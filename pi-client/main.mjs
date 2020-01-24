@@ -13,7 +13,7 @@ const socket = io('http://10.7.31.37:8080')
 const led = new Led()
 const acc = new Accelerometer()
 
-const lastPushed = 0
+let lastPushed = 0
 
 socket.on('connect', async () => {
   console.log('Connected to the server.')
