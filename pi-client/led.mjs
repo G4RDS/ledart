@@ -27,6 +27,8 @@ export default class Led {
   }
 
   changeColor(color) {
+    console.log('My color is changing to: ', color)
+
     this.color = color
 
     // update pwm value
